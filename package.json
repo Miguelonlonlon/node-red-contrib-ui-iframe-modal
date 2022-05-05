@@ -1,6 +1,6 @@
 {
 	"name": "@miguelonlonlon/node-red-contrib-ui-webview-modal",
-	"description": "Use this node to display a given website in iframe overlay.",
+	"description": "Use this node to display a given website in a webview overlay.",
 	"keywords": [
 		"dashboard",
 		"node-red",
@@ -27,7 +27,7 @@
 	},
 	"node-red": {
 		"nodes": {
-			"ui_iframe_modal": "webview-modal.js"
+			"ui_webview_modal": "webview-modal.js"
 		}
 	}
 }
