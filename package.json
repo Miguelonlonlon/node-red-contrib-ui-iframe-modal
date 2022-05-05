@@ -1,14 +1,14 @@
 {
-	"name": "@sherlock-gmbh/node-red-contrib-ui-iframe-modal",
+	"name": "@miguelonlonlon/node-red-contrib-ui-webview-modal",
 	"description": "Use this node to display a given website in iframe overlay.",
 	"keywords": [
 		"dashboard",
 		"node-red",
-		"iframe",
+		"webview",
         "website",
 		"ui"
 	],
-	"version": "0.0.2",
+	"version": "0.0.1",
 	"license": "MIT",
 	"author": {
 		"name": "Dirk Dresch",
@@ -16,18 +16,18 @@
 	},
 	"repository": {
 		"type": "git",
-		"url": "git+https://github.com/Sherlock-GmbH/node-red-contrib-ui-iframe-modal.git"
+		"url": "git@github.com:Miguelonlonlon/node-red-contrib-ui-iframe-modal.git"
 	},
 	"bugs": {
-		"url": "https://github.com/Sherlock-GmbH/node-red-contrib-ui-iframe-modal/issues"
+		"url": "https://github.com/Miguelonlonlon/node-red-contrib-ui-webview-modal/issues"
 	},
-	"homepage": "https://github.com/Sherlock-GmbH/node-red-contrib-ui-iframe-modal#readme",
+	"homepage": "https://github.com/Miguelonlonlon/node-red-contrib-ui-webview-modal#readme",
 	"peerDependencies": {
-		"node-red-dashboard": "^2.23.2"
+		"node-red-dashboard": "*"
 	},
 	"node-red": {
 		"nodes": {
-			"ui_iframe_modal": "iframe-modal.js"
+			"ui_iframe_modal": "webview-modal.js"
 		}
 	}
 }
