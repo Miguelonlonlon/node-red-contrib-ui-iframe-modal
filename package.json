@@ -16,7 +16,7 @@
 	},
 	"repository": {
 		"type": "git",
-		"url": "git@github.com:Miguelonlonlon/node-red-contrib-ui-iframe-modal.git"
+		"url": "git@github.com:Miguelonlonlon/node-red-contrib-ui-webview-modal.git"
 	},
 	"bugs": {
 		"url": "https://github.com/Miguelonlonlon/node-red-contrib-ui-webview-modal/issues"

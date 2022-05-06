@@ -14,14 +14,14 @@ module.exports = function(RED) {
 		if (!scale || (scale === "")) {
 			scale = 100;
 		}
-		var iframeWidth = (config.iframeWidth !== '') ? config.iframeWidth : 50;
-		var iframeHeight = (config.iframeHeight !== '') ? config.iframeHeight : 50;
+		var webviewWidth = (config.webviewWidth !== '') ? config.webviewWidth : 50;
+		var webviewHeight = (config.webviewHeight !== '') ? config.webviewHeight : 50;
 
 		var html = String.raw`
 		<style>
 			.overlay { position: fixed; top: 0; left: 0; height: 100%; width: 100%; z-index: 10; background-color: rgba(0,0,0,0.5); display: block; text-align: center; padding: 5%; }
 			.overlay div.container { background-color: white; border: 6px solid var(--nr-dashboard-pageTitlebarBackgroundColor); display: inline-block; }
-			.overlay div.container iframe { overflow: hidden; border: 0; display: none; }
+			.overlay div.container webview { overflow: hidden; border: 0; display: none; }
 			.overlay div.container div.loading { padding: 10%; }
 		</style>
 		<script>
@@ -31,20 +31,20 @@ module.exports = function(RED) {
 					var frameUrl = 'not-set';
 					frameUrl = (msg && msg.url) ? msg.url : '${url}';					
 
-					// only build iframe if we have a valid URL
+					// only build webview if we have a valid URL
 					if (frameUrl === 'not-set' || frameUrl === '') { return; }
 
-					window.closeIframeModal = function() {
+					window.closewebviewModal = function() {
 						document.body.removeChild(document.getElementById('${id}-overlay')); 
 						scope.send({payload: '', url: ''});
 					}
 
-					// build iframe html
-					var frameHtml = '<div class="overlay" onclick="closeIframeModal()">';
-					frameHtml += '<div class="container" style="width: ${iframeWidth}vw; height: ${iframeHeight}vh;"><div class="loading" id="${id}-loading"><i class="fa fa-spinner fa-spin"></i></div>';
-					frameHtml += '<iframe id="${id}" src="' + frameUrl + '" allow="${allow}" style="width: ${iframeWidth}vw; height: ${iframeHeight}vh;">';
+					// build webview html
+					var frameHtml = '<div class="overlay" onclick="closewebviewModal()">';
+					frameHtml += '<div class="container" style="width: ${webviewWidth}vw; height: ${webviewHeight}vh;"><div class="loading" id="${id}-loading"><i class="fa fa-spinner fa-spin"></i></div>';
+					frameHtml += '<webview id="${id}" src="' + frameUrl + '" allow="${allow}" style="width: ${webviewWidth}vw; height: ${webviewHeight}vh;">';
 					frameHtml += 'Failed to load Web page';
-					frameHtml += '</iframe></div></div>';
+					frameHtml += '</webview></div></div>';
 
 					// add html to document body
 					var frameDiv = document.createElement("div");
@@ -53,10 +53,10 @@ module.exports = function(RED) {
 					document.body.appendChild(frameDiv);
 								
 					// add loading handler
-					var iframeElem = document.getElementById('${id}');
-					iframeElem.addEventListener('load', function() {
+					var webviewElem = document.getElementById('${id}');
+					webviewElem.addEventListener('load', function() {
 					    document.getElementById('${id}-loading').style.display = 'none';
-						iframeElem.style.display = 'block';
+						webviewElem.style.display = 'block';
 					});
 				});
 			})(scope);
@@ -68,7 +68,7 @@ module.exports = function(RED) {
 
 	function checkConfig(node, conf) {
 		if (!conf || !conf.hasOwnProperty("group")) {
-			node.error(RED._("ui_iframe_modal.error.no-group"));
+			node.error(RED._("ui_webview_modal.error.no-group"));
 			return false;
 		}
 		return true;
@@ -76,7 +76,7 @@ module.exports = function(RED) {
 
 	var ui = undefined;
 
-	function IFrameModalNode(config) {
+	function webviewModalNode(config) {
 		try {
 			var node = this;
 			if(ui === undefined) {
@@ -133,7 +133,7 @@ module.exports = function(RED) {
 	}
 	
 	setImmediate(function() {
-		RED.nodes.registerType("ui_iframe_modal", IFrameModalNode);
+		RED.nodes.registerType("ui_webview_modal", webviewModalNode);
 	})
 
 }
